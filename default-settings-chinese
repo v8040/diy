@@ -15,5 +15,6 @@ EOF
 uci commit system
 
 sed -i 's,downloads.openwrt.org,mirrors.tencent.com/lede,g' /etc/opkg/distfeeds.conf
+sed -i 's/^src/#&/' /etc/opkg/distfeeds.conf
 
 exit 0
