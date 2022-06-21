@@ -1,11 +1,4 @@
 #!/bin/bash
-#===============================================
-# Description: DIY script part 2
-# File name: diy-part2.sh
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#===============================================
 
 # 修改默认IP
 sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
@@ -15,14 +8,13 @@ sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/emortal/a
 
 # Modify system hostname
 sed -i 's/ImmortalWrt/N1/g' package/base-files/files/bin/config_generate
-wget https://raw.githubusercontent.com/v8040/diy/main/default-settings -O package/emortal/default-settings/files/99-default-settings
+# wget https://raw.githubusercontent.com/v8040/diy/main/default-settings -O package/emortal/default-settings/files/99-default-settings
 wget https://raw.githubusercontent.com/v8040/diy/main/default-settings-chinese -O package/emortal/default-settings/files/99-default-settings-chinese
 sed -i 's/invalid users = root/#&/g' feeds/packages/net/samba4/files/smb.conf.template
 sed -i "s?/bin/login?/usr/libexec/login.sh?g" feeds/packages/utils/ttyd/files/ttyd.config
 
 # 修改opkg源
 echo "src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a53" >> package/system/opkg/files/customfeeds.conf
-sed -i 's/^option check_signature/#&/' package/system/opkg/files/opkg.conf
 
 # 移除重复软件包
 rm -rf feeds/luci/applications/luci-app-advanced
