@@ -15,6 +15,20 @@ EOF
 uci commit system
 
 sed -i 's,downloads.openwrt.org,mirrors.tencent.com/lede,g' /etc/opkg/distfeeds.conf
+
 sed -i 's/^src/#&/' /etc/opkg/distfeeds.conf
+sed -i 's/^option check_signature/#&/' /etc/opkg.conf
+
+sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
+echo "DISTRIB_REVISION='R$(TZ=UTC-8 date "+%-m.%-d")'" >> /etc/openwrt_release
+sed -i '/DISTRIB_RELEASE/d' /etc/openwrt_release
+echo "DISTRIB_RELEASE='$(TZ=UTC-8 date "+%Y.%-m.%-d")'" >> /etc/openwrt_release
+sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='ImmortalWrt '" >> /etc/openwrt_release
+
+sed -i 's/LuCI openwrt-18.06 branch/v8040/g' /usr/lib/lua/luci/version.lua
+sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua
+echo "luciversion = '$(TZ=UTC-8 date "+%Y.%-m.%-d")'" >> /usr/lib/lua/luci/version.lua
+
 
 exit 0
