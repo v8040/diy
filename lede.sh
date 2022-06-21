@@ -1,11 +1,4 @@
 #!/bin/bash
-#===============================================
-# Description: DIY script part 2
-# File name: diy-part2.sh
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#===============================================
 
 # 修改默认IP
 sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
@@ -16,8 +9,7 @@ sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/auto
 # Modify system hostname
 sed -i 's/OpenWrt/N1/g' package/base-files/files/bin/config_generate
 sed -i "s/OpenWrt /v8040 Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
-sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
-# sed -i "s?/bin/login?/usr/libexec/login.sh?g" package/feeds/packages/ttyd/files/ttyd.config
+sed -i 's/invalid users = root/#&/g' feeds/packages/net/samba4/files/smb.conf.template
 sed -i "s?/bin/login?/usr/libexec/login.sh?g" feeds/packages/ttyd/files/ttyd.config
 
 # 修改opkg源
