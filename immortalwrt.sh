@@ -8,8 +8,7 @@ sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/emortal/a
 
 # Modify system hostname
 sed -i 's/ImmortalWrt/N1/g' package/base-files/files/bin/config_generate
-# wget https://raw.githubusercontent.com/v8040/diy/main/default-settings -O package/emortal/default-settings/files/99-default-settings
-wget https://raw.githubusercontent.com/v8040/diy/main/default-settings-chinese -O package/emortal/default-settings/files/99-default-settings-chinese
+wget https://raw.githubusercontent.com/v8040/diy/main/diy-settings -O package/emortal/default-settings/files/99-default-settings-chinese
 sed -i 's/invalid users = root/#&/g' feeds/packages/net/samba4/files/smb.conf.template
 sed -i "s?/bin/login?/usr/libexec/login.sh?g" feeds/packages/utils/ttyd/files/ttyd.config
 
@@ -135,3 +134,6 @@ sed -i 's/"挂载 SMB 网络共享"/"挂载共享"/g' `grep "挂载 SMB 网络�
 sed -i 's/"易有云文件管理器"/"易有云"/g' `grep "易有云文件管理器" -rl ./`
 sed -i 's/"解除网易云音乐播放限制"/"音乐解锁"/g' `grep "解除网易云音乐播放限制" -rl ./`
 sed -i 's/"阿里云盘 FUSE"/"阿里云盘"/g' `grep "阿里云盘 FUSE" -rl ./`
+
+./scripts/feeds update -a
+./scripts/feeds install -a
