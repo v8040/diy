@@ -27,6 +27,7 @@ sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='ImmortalWrt '" >> /etc/openwrt_release
 
 sed -i 's/LuCI openwrt-18.06 branch/v8040/g' /usr/lib/lua/luci/version.lua
+sed -i 's/LuCI openwrt-18.06-k5.4 branch/v8040/g' /usr/lib/lua/luci/version.lua
 sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua
 echo "luciversion = '$(TZ=UTC-8 date "+%Y.%-m.%-d")'" >> /usr/lib/lua/luci/version.lua
 
