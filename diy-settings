@@ -22,6 +22,8 @@ sed -i 's,downloads.immortalwrt.org,mirrors.vsean.net/openwrt,g' /etc/opkg/distf
 sed -i 's/^src/#&/' /etc/opkg/distfeeds.conf
 sed -i 's/^option check_signature/#&/' /etc/opkg.conf
 
+sed -i '/coremark.sh/d' etc/crontabs/root
+
 sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
 echo "DISTRIB_REVISION='R$(TZ=UTC-8 date "+%-m.%-d")'" >> /etc/openwrt_release
 sed -i '/DISTRIB_RELEASE/d' /etc/openwrt_release
